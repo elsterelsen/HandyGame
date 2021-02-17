@@ -1,0 +1,8 @@
+-ein paddle schneller als das andere
+-Steuerung invertieren
+-Slowmotion
+-ball wird immer schneller
+-Paddle werden gr��er/kleiner
+-andere paddel gr��e-> anderer Geschwindigkeit
+-skins für kugel
+-man steuert nicht mehr die paddles sondern die kugeln

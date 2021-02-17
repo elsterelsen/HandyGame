@@ -1,0 +1,4 @@
+de/handy/game/BuildConfig.java
+ de.handy.game.BuildConfig
+de/handy/game/AndroidLauncher.java
+ de.handy.game.AndroidLauncher

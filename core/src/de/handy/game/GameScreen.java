@@ -52,9 +52,9 @@ public class GameScreen extends ScreenAdapter {
 
         balls=new Ball[5];
         ballsize=paddlesize.y*2.4f;
-        balls[0]=new Ball(1,1,ballsize, random.nextInt(100)-50,
-                -50,ballTexture,movementFaktor);
-        ballCount=1;
+        ballCount=0;
+        addBall();
+
         this.game=game;
 
     }
@@ -165,6 +165,15 @@ public class GameScreen extends ScreenAdapter {
             }
 
         }
+    }
+
+    public void addBall(){
+        Vector2 ballMovement=new Vector2(0,0);
+        ballMovement.setToRandomDirection();
+        ballMovement.scl(50);
+        balls[ballCount]=new Ball(1,1,ballsize, ballMovement.x,ballMovement.x,ballTexture,movementFaktor);
+        ballCount++;
+
     }
 
 

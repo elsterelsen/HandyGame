@@ -20,6 +20,7 @@ public class Ball {
     Rectangle hitBox;
     float movementFaktor;
 
+
     public Ball(float x,float y,float size,float xMovement,float yMovement,Texture img,float movementFaktor) {
 
         this.size = size;

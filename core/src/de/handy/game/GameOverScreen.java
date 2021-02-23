@@ -19,6 +19,7 @@ public class GameOverScreen extends ScreenAdapter {
     Texture img;
     Vector2 restartButtonSize;
     Vector2 restartButtonPosition;
+
     public GameOverScreen(HandyGame game) {
         this.game = game;
 
@@ -41,7 +42,6 @@ public class GameOverScreen extends ScreenAdapter {
         }
 
         System.out.println(Gdx.input.getX()+"||"+(-1*(Gdx.input.getY()-Gdx.graphics.getHeight())));
-
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         batch.begin();

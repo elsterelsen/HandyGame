@@ -30,6 +30,7 @@ public class GameScreen extends ScreenAdapter {
     float movementFaktor;
 
 
+
     public GameScreen(HandyGame game) {
         random=new Random();
         SR=new ShapeRenderer();
@@ -43,12 +44,12 @@ public class GameScreen extends ScreenAdapter {
 
         paddlesize=new Vector2(Gdx.graphics.getHeight()/4,Gdx.graphics.getHeight()/20);
         paddles=new Paddle[4];
-        paddles[0]=new Paddle(Gdx.graphics.getWidth()/2.0f,Gdx.graphics.getHeight() - paddlesize.y,paddlesize,false);
-        paddles[1]=new Paddle(Gdx.graphics.getWidth()/2.0f,paddlesize.y,paddlesize,false);
-        paddles[2]=new Paddle(Gdx.graphics.getWidth()-paddlesize.y,Gdx.graphics.getHeight()/2.0f,paddlesize.y,paddlesize.x,true);
-        paddles[3]=new Paddle(paddlesize.y,Gdx.graphics.getHeight()/2.0f,paddlesize.y,paddlesize.x,true);
+        paddles[0]=new Paddle(Gdx.graphics.getWidth()/2.0f,Gdx.graphics.getHeight() - paddlesize.y,paddlesize.x,paddlesize.y,0);
+        paddles[1]=new Paddle(Gdx.graphics.getWidth()/2.0f,paddlesize.y,paddlesize.x,paddlesize.y,1);
+        paddles[2]=new Paddle(Gdx.graphics.getWidth()-paddlesize.y,Gdx.graphics.getHeight()/2.0f,paddlesize.y,paddlesize.x,2);
+        paddles[3]=new Paddle(paddlesize.y,Gdx.graphics.getHeight()/2.0f,paddlesize.y,paddlesize.x,3);
 
-        movementFaktor=Gdx.graphics.getWidth()/1280;
+        movementFaktor=Gdx.graphics.getWidth()/1280.0f;
 
         balls=new Ball[5];
         ballsize=paddlesize.y*2.4f;
@@ -171,7 +172,7 @@ public class GameScreen extends ScreenAdapter {
         Vector2 ballMovement=new Vector2(0,0);
         ballMovement.setToRandomDirection();
         ballMovement.scl(50);
-        balls[ballCount]=new Ball(1,1,ballsize, ballMovement.x,ballMovement.x,ballTexture,movementFaktor);
+        balls[ballCount]=new Ball(1,1,ballsize, ballMovement.x,ballMovement.x,ballTexture,1);
         ballCount++;
 
     }

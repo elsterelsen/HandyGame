@@ -53,7 +53,7 @@ public class Ball {
     }
 
     public void dispose(){
-
+        img.dispose();
     }
 
     public void setPosition(Vector2 position) {
@@ -67,21 +67,25 @@ public class Ball {
     public void checkCollision(Paddle paddle0,Paddle paddle1,Paddle paddle2,Paddle paddle3){
         if(hitBox.overlaps(paddle0.hitBox)){
                 movement.y*=-1.0f*movementScale.y;
+                position.y=paddle0.position.y-paddle0.windowSize.y-paddle0.size.y/2-size;
             if(movement.x<0){movement.x-=(random.nextInt(25)+1)*movementFaktor;}
             else{movement.x+=(random.nextInt(25)+1)*movementFaktor;}
         }
         if(hitBox.overlaps(paddle1.hitBox)){
                 movement.y*=-1.0f*movementScale.y;
+                position.y=paddle1.position.y-paddle1.windowSize.y+paddle1.size.y/2+2;
                 if(movement.x<0){movement.x-=(random.nextInt(25)+1)*movementFaktor;}
             else{movement.x+=(random.nextInt(25)+1)*movementFaktor;}
         }
         if(hitBox.overlaps(paddle2.hitBox)){
                 movement.x*=-1.0f*movementScale.x;
+                position.x=paddle2.position.x-paddle2.windowSize.x-paddle2.size.x/2-size;
             if(movement.y<0){movement.y-=(random.nextInt(25)+1)*movementFaktor;}
             else{movement.y+=(random.nextInt(25)+1)*movementFaktor;}
         }
         if(hitBox.overlaps(paddle3.hitBox)){
                 movement.x*=-1.0f*movementScale.x;
+                position.x=paddle3.position.x-paddle3.windowSize.x+paddle3.size.x/2+2;
             if(movement.y<0){movement.y-=(random.nextInt(25)+1)*movementFaktor;}
             else{movement.y+=(random.nextInt(25)+1)*movementFaktor;}
         }
@@ -90,4 +94,5 @@ public class Ball {
         return position.x< -Gdx.graphics.getWidth()/2||position.x> Gdx.graphics.getWidth()/2
                 ||position.y<-Gdx.graphics.getHeight()/2||position.y>Gdx.graphics.getHeight()/2;
     }
+
 }

@@ -9,7 +9,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
 
 import java.util.Random;
 
@@ -19,15 +21,17 @@ public class GameScreen extends ScreenAdapter {
     Viewport viewport;
     SpriteBatch batch;
     Texture ballTexture;
-    ShapeRenderer SR;
+    static ShapeRenderer SR;
     Paddle[] paddles;
     Vector2 paddlesize;
-    Ball[] balls;
-    int ballCount;
-    float ballsize;
+    static Ball[] balls;
+    static int ballCount;
+    static float ballsize;
     Random random;
     HandyGame game;
     float movementFaktor;
+    static Array passivePowerups;
+    static Array activePowerups;
 
 
 
@@ -51,6 +55,10 @@ public class GameScreen extends ScreenAdapter {
 
         movementFaktor=Gdx.graphics.getWidth()/1280.0f;
 
+        passivePowerups=new Array();
+        activePowerups=new Array();
+
+
         balls=new Ball[5];
         ballsize=paddlesize.y*2.4f;
         ballCount=0;
@@ -66,9 +74,9 @@ public class GameScreen extends ScreenAdapter {
     public void render (float delta) {
         gameOver();
         PaddleSteuerung(delta);
-        ballSteuerung(delta);
+        ballSteuerung();
 
-        System.out.println(Gdx.graphics.getWidth()+""+Gdx.graphics.getHeight());
+
 
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -129,19 +137,32 @@ public class GameScreen extends ScreenAdapter {
 
 
     }
-    public void ballSteuerung(float delta){
-        if (Gdx.input.isKeyPressed(Input.Keys.W)){
-            balls[0].position.y+=3;
+    public void ballSteuerung(){
+
+            if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+                balls[0].position.y += 3;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+                balls[0].position.y -= 3;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+                balls[0].position.x -= 3;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+                balls[0].position.x += 3;
+            }
+
+
+
+    }
+
+    public void powerupCheck(){
+
+        for(int i=activePowerups.size-1;i>=0;i--){
+            activePowerups.get(i);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)){
-            balls[0].position.y-=3;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.A)){
-            balls[0].position.x-=3;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)){
-            balls[0].position.x+=3;
-        }
+
+
 
     }
 
@@ -155,6 +176,7 @@ public class GameScreen extends ScreenAdapter {
             for(int i=ballCount;i>0;i--){
                 if (balls[i-1].outsideOfScreen()){
                     if(balls[i-1]!=balls[ballCount-1]){
+                        balls[i-1].dispose();
                         balls[i-1]=balls[ballCount-1];
                         ballCount--;
                     }
@@ -171,8 +193,8 @@ public class GameScreen extends ScreenAdapter {
     public void addBall(){
         Vector2 ballMovement=new Vector2(0,0);
         ballMovement.setToRandomDirection();
-        ballMovement.scl(50);
-        balls[ballCount]=new Ball(1,1,ballsize, ballMovement.x,ballMovement.x,ballTexture,1);
+        ballMovement.scl(100*movementFaktor);
+        balls[ballCount]=new Ball(1,1,ballsize, ballMovement.x,ballMovement.y,ballTexture,1);
         ballCount++;
 
     }

@@ -1,12 +1,14 @@
-de/handy/game/HandyGame.java
- de.handy.game.HandyGame
-de/handy/game/GameOverScreen.java
- de.handy.game.GameOverScreen
 de/handy/game/Paddle.java
  de.handy.game.Paddle
-de/handy/game/Powerup.java
- de.handy.game.Powerup
 de/handy/game/Ball.java
  de.handy.game.Ball
+de/handy/game/PowerupBallsize.java
+ de.handy.game.PowerupBallsize
+de/handy/game/HandyGame.java
+ de.handy.game.HandyGame
+de/handy/game/Powerup.java
+ de.handy.game.Powerup
 de/handy/game/GameScreen.java
  de.handy.game.GameScreen
+de/handy/game/GameOverScreen.java
+ de.handy.game.GameOverScreen
